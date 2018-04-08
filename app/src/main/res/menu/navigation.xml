@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="@string/title_home" />
+
+
+    <item
+        android:id="@+id/navigation_clases"
+        android:icon="@drawable/playlist_check"
+        android:title="@string/title_class" />
+
+
+    <item
+        android:id="@+id/navigation_clasespordictar"
+        android:icon="@drawable/format_list_checks"
+        android:title="@string/title_classnc" />
+
+    <item
+        android:id="@+id/navigation_social"
+        android:icon="@drawable/account_multiple"
+        android:title="@string/title_socianet" />
+    <item
+        android:id="@+id/navigation_profile"
+        android:icon="@drawable/account_settings_variant"
+        android:title="@string/title_profile" />
+</menu>

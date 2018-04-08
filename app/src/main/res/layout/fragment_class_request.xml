@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:id="@+id/class_request_materia_Selection"
+        android:weightSum="2"
+        android:layout_margin="10dp"
+        >
+
+        <TextView
+            android:id="@+id/Materia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="Materia"
+            android:textColor="@color/black"
+            android:layout_weight="1.6"
+            android:textSize="24sp" />
+
+        <ImageView
+            android:id="@+id/materia_done"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_weight="0.4"
+            app:srcCompat="@drawable/ic_delete" />
+    </LinearLayout>
+
+    <Spinner
+        android:id="@+id/spinner_materia"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/class_request_materia_Selection" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/spinner_materia"
+        android:id="@+id/class_request_motivo_Selection"
+        android:weightSum="2"
+        android:layout_margin="10dp"
+
+        >
+
+        <TextView
+            android:id="@+id/Tema"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_below="@+id/progressbar_clase"
+            android:textColor="@color/black"
+            android:text="Tema"
+            android:layout_weight="1.6"
+            android:textSize="24sp" />
+
+        <ImageView
+            android:id="@+id/tema_done"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_alignTop="@+id/Tema"
+            android:layout_weight="0.4"
+            app:srcCompat="@drawable/ic_delete" />
+
+    </LinearLayout>
+
+    <Spinner
+        android:id="@+id/spinner_tema"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/class_request_motivo_Selection" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/raro"
+        android:layout_below="@+id/spinner_tema"
+        android:weightSum="2"
+        android:layout_margin="10dp"
+
+        >
+
+        <TextView
+            android:id="@+id/Motivo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/spinner_tema"
+            android:layout_weight="1.6"
+            android:text="Motivo"
+            android:textColor="@color/black"
+            android:textSize="24sp" />
+
+        <ImageView
+            android:id="@+id/motivo_done"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0.4"
+            app:srcCompat="@drawable/ic_delete" />
+
+    </LinearLayout>
+
+    <Spinner
+        android:id="@+id/spinner_motivo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/raro" />
+
+    <Button
+        android:id="@+id/Dia"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_below="@+id/spinner_motivo"
+        android:background="@drawable/button"
+        android:drawablePadding="2dip"
+        android:drawableRight="@drawable/ic_calendar_unchecked"
+        android:paddingLeft="30dip"
+        android:paddingRight="26dip"
+        android:text="Día"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/Hora"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Dia"
+        android:background="@drawable/button"
+        android:drawableRight="@drawable/ic_clock_unchecked"
+        android:drawablePadding="2dip"
+        android:paddingLeft="30dip"
+        android:paddingRight="26dip"
+        android:text="Hora"
+        android:layout_margin="10dp"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/Lugar"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_alignParentStart="true"
+        android:drawablePadding="2dip"
+        android:paddingLeft="30dip"
+        android:paddingRight="26dip"
+        android:layout_below="@+id/Hora"
+        android:background="@drawable/button"
+        android:drawableRight="@drawable/ic_map_marker_unchecked"
+        android:text="Lugar"
+        android:layout_margin="10dp"
+        android:textSize="24sp" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Lugar"
+        android:layout_margin="10dp"
+        android:background="@drawable/rounded_buttton"
+        android:textColor="@android:color/white"
+        android:text="Pedir clase"
+        android:id="@+id/PedirClase"
+        />
+
+</RelativeLayout>
+
+

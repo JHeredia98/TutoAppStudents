@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    >
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/layout_customdialog_pick_professional_degree_container"
+        android:weightSum="4"
+        android:padding="5dp"> <!-- to show what the parent is -->
+        <LinearLayout
+
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Selecciona Ciudad"
+                />
+
+            <Spinner
+                android:id="@+id/layout_customdialog_pick_professional_degree_spin_prof"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/Ciudades"
+                >
+
+
+            </Spinner>
+        </LinearLayout>
+        <LinearLayout
+
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:orientation="vertical"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Selecciona Universidad"
+                />
+
+            <Spinner
+                android:id="@+id/layout_customdialog_pick_professional_degree_spin_area"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/Universidades"
+                >
+
+
+            </Spinner>
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/layout_customdialog_pick_professional_degree_container_university"
+        android:weightSum="4"
+        android:layout_below="@+id/layout_customdialog_pick_professional_degree_container"
+        android:padding="5dp"> <!-- to show what the parent is -->
+        <LinearLayout
+
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Selecciona tu profesion"
+                />
+
+            <Spinner
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/Profesiones"
+                >
+
+
+            </Spinner>
+        </LinearLayout>
+        <LinearLayout
+
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:orientation="vertical"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Selecciona tu Area"
+                />
+
+            <Spinner
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+            </Spinner>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:id="@+id/layout_customdialog_pick_professional_textview_pd"
+        android:layout_height="wrap_content"
+        android:text="Tipo de post-grado"
+        android:layout_below="@+id/layout_customdialog_pick_professional_degree_container_university"
+        />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/layout_customdialog_pick_professional_degree_spinner_esp"
+        android:layout_below="@+id/layout_customdialog_pick_professional_textview_pd"
+        >
+
+
+    </Spinner>
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/layout_customdialog_pick_professional_layouttext_pd"
+        android:layout_below="@+id/layout_customdialog_pick_professional_degree_spinner_esp"
+        >
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ingrese el nombre del post-grado"
+            />
+
+    </android.support.design.widget.TextInputLayout>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/layout_customdialog_pick_professional_degree_button"
+        android:layout_below="@+id/layout_customdialog_pick_professional_layouttext_pd"
+        android:background="@drawable/rectangle"
+        android:layout_margin="10dp"
+        android:text="Seleccionar"
+        />
+</RelativeLayout>

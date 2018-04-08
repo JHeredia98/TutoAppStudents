@@ -1,0 +1,104 @@
+<resources>
+    <string name="app_name">TutoAppTeacher</string>
+    <string name="title_home">Home</string>
+    <string name="title_classnc">Clases por dictar</string>
+    <string name="title_class">Clases</string>
+    <string name="title_socianet">Social</string>
+    <string name="title_chat">Chat</string>
+    <string name="title_profile">Perfil</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="need_a_new_account">NEED A NEW ACCOUNT ?</string>
+    <string name="display_name">Display Name</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="create_account">CREATE ACCOUNT</string>
+    <string name="log_out">Log Out</string>
+
+
+    <string name="default_status">Hi there, I\'m using Tuto</string>
+
+    <array name="areas">
+        <item>
+            <string-array name="AreasIngenierias">
+                <item>Sistemas</item>
+                <item>Financiera</item>
+                <item>Mercados</item>
+                <item>Eenergias</item>
+                <item>Mecanica</item>
+                <item>Mecatronica</item>
+                <item>Biomedica</item>
+                <item>Industrial</item>
+            </string-array>
+        </item>
+        <item>
+            <string-array name="Medico">
+                <item>General</item>
+                <item>Cirujano</item>
+            </string-array>
+
+
+        </item>
+    </array>
+
+
+    <string-array name="Profesiones">
+        <item>Administracion</item>
+        <item>Ingenieria</item>
+        <item>Medicina</item>
+        <item>Derecho</item>
+    </string-array>
+
+    <string-array name="Ciudades">
+        <item>Bucaramanga</item>
+        <item>Bogota</item>
+        <item>Medellin</item>
+        <item>Cali</item>
+    </string-array>
+
+    <array name="Universidades">
+        <item>
+            <string-array name="Bucaramanga">
+                <item>UNAB</item>
+                <item>Pontificia Bolivariana</item>
+                <item>UIS</item>
+
+            </string-array>
+        </item>
+
+
+        <item>
+            <string-array name="Bogota">
+                <item>UNAB</item>
+                <item>Pontifica Javeriana</item>
+                <item>Nacional</item>
+            </string-array>
+
+
+        </item>
+        <item>
+            <string-array name="Medellin">
+                <item>EAFIT</item>
+                <item>Pontifica Bolivariana</item>
+                <item>Nacional</item>
+            </string-array>
+
+
+        </item>
+
+
+        <item>
+            <string-array name="Cali">
+                <item>Calenia</item>
+                <item>Oriente</item>
+                <item>Nacional</item>
+            </string-array>
+
+
+        </item>
+    </array>
+
+</resources>
+
