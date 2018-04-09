@@ -56,6 +56,8 @@ public class ClassRequest extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
+    private ArrayList<Tema> ArrayListTopics;
+    private ArrayList<Materia> ArrayListSubjects;
     public ClassRequest() {
         // Required empty public constructor
     }
@@ -85,6 +87,8 @@ public class ClassRequest extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        ArrayListTopics=new ArrayList<>();
+        ArrayListSubjects=new ArrayList<>();
     }
 
     @Override
@@ -110,9 +114,24 @@ public class ClassRequest extends Fragment {
     }
 
     public void LaunchAlertDialog(LayoutInflater inflater){
-        final List<Materia> SubList=new ArrayList<>();
+        //UI
+
+
+        final View dialogView = inflater.inflate(R.layout.fragment_class_request, null);
+        final Spinner materiasSpinner = (Spinner) dialogView.findViewById(R.id.spinner_materia);
+        final Spinner temasSpinner = (Spinner) dialogView.findViewById(R.id.spinner_tema);
+
+        Spinner motivoSpinner = (Spinner) dialogView.findViewById(R.id.spinner_motivo);
+
+        Button pedirClaseButton = (Button) dialogView.findViewById(R.id.PedirClase);
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setView(dialogView);
+        final AlertDialog d = builder.show();
+
+
+        final ArrayList<Materia> SubList=new ArrayList<>();
         final List<String> SubListNames=new ArrayList<>();
-        final List<Tema> TopicList=new ArrayList<>();
+        final ArrayList<Tema> TopicList=new ArrayList<>();
         final List<String> TopicListNames=new ArrayList<>();
         OkHttpClient client = new OkHttpClient();
         RequestBody formbody=new FormBody.Builder()
@@ -136,69 +155,88 @@ public class ClassRequest extends Fragment {
                 for (int i = 0; i <materias.getMaterias().size() ; i++) {
                     SubList.add(materias.getMaterias().get(i));
                     SubListNames.add(materias.getMaterias().get(i).getNombreMateria());
+                    ArrayListSubjects.add(materias.getMaterias().get(i));
                 }
+                Log.i("sizelist","valor de la lista "+SubListNames.size());
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                                getContext(), android.R.layout.simple_spinner_item, SubListNames);
+
+                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+                        materiasSpinner.setAdapter(adapter);
+                    }
+                });
+
+
             }
         });
-        final View dialogView = inflater.inflate(R.layout.fragment_class_request, null);
-        Spinner materiasSpinner = (Spinner) dialogView.findViewById(R.id.spinner_materia);
-        final Spinner temasSpinner = (Spinner) dialogView.findViewById(R.id.spinner_tema);
 
-        ArrayAdapter<String> spinnerMateriasArrayAdapter = new ArrayAdapter<String>(getContext(),   android.R.layout.simple_spinner_item,SubListNames);
-        spinnerMateriasArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down view
-        materiasSpinner.setAdapter(spinnerMateriasArrayAdapter);
+
 
         materiasSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getContext(), "Sirvió", Toast.LENGTH_SHORT).show();
-                ((TextView) view).setTextColor(Color.RED);
-                OkHttpClient client = new OkHttpClient();
-                RequestBody formbody=new FormBody.Builder()
-                        .add("idMateria",SubList.get(position).getIdMateria())
-                        .build();
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
-                Request request =new Request.Builder()
-                        .url("http://www.ruedadifusion.com/BuscarTema.php")
-                        .post(formbody)
-                        .build();
-                client.newCall(request).enqueue(new Callback() {
-                    @Override
-                    public void onFailure(Call call, IOException e) {
+                    OkHttpClient client = new OkHttpClient();
+                    RequestBody formbody=new FormBody.Builder()
+                            .add("idMateria",ArrayListSubjects.get(i).getIdMateria())
+                            .build();
 
-                    }
+                    Request request =new Request.Builder()
+                            .url("http://www.ruedadifusion.com/BuscarTema.php")
+                            .post(formbody)
+                            .build();
+                    client.newCall(request).enqueue(new Callback() {
+                        @Override
+                        public void onFailure(Call call, IOException e) {
 
-                    @Override
-                    public void onResponse(Call call, Response response) throws IOException {
-
-                        Temas temas;
-                        final String Ans = response.body().string();
-                        Gson gson = new Gson();
-                        temas = gson.fromJson(Ans, Temas.class);
-                        for (int i = 0; i <temas.getTemas().size() ; i++) {
-                            TopicList.add(temas.getTemas().get(i));
-                            TopicListNames.add(temas.getTemas().get(i).getNombreTema());
                         }
-                        Log.i("INFOTEMAS",Ans);
-                        ArrayAdapter<String> spinnerTemasArrayAdapter = new ArrayAdapter<String>(getContext(),   android.R.layout.simple_spinner_item,TopicListNames);
-                        spinnerTemasArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down view
-                        temasSpinner.setAdapter(spinnerTemasArrayAdapter);
-                    }
-                });
-            }
+
+                        @Override
+                        public void onResponse(Call call, Response response) throws IOException {
+
+                            Temas temas;
+                            final String Ans = response.body().string();
+                            Gson gson = new Gson();
+                            temas = gson.fromJson(Ans, Temas.class);
+
+                            TopicList.clear();
+                            TopicListNames.clear();
+                            ArrayListTopics.clear();
+
+                            for (int i = 0; i <temas.getTemas().size() ; i++) {
+                                TopicList.add(temas.getTemas().get(i));
+                                TopicListNames.add(temas.getTemas().get(i).getNombreTema());
+                                ArrayListTopics.add(temas.getTemas().get(i));
+                            }
+                            Log.i("sizelist","valor de la lista "+TopicListNames.size());
+
+                            getActivity().runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                                            getContext(), android.R.layout.simple_spinner_item, TopicListNames);
+
+                                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                                    adapter.notifyDataSetChanged();
+                                    temasSpinner.setAdapter(adapter);
+                                }
+                            });
+                        }
+                    });
+
+                }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+            public void onNothingSelected(AdapterView<?> adapterView) {
 
             }
         });
 
 
-        Spinner motivoSpinner = (Spinner) dialogView.findViewById(R.id.spinner_motivo);
-
-        Button pedirClaseButton = (Button) dialogView.findViewById(R.id.PedirClase);
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        builder.setView(dialogView);
-        final AlertDialog d = builder.show();
         pedirClaseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
