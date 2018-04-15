@@ -19,12 +19,13 @@
 
 
     <string name="default_status">Hi there, I\'m using Tuto</string>
-    <array name="arrayMotivo" >
+    <array name="arrayMotivo">
         <item>"Taller"</item>
         <item>"Parcial"</item>
         <item>"Refuerzo"</item>
         <item>"Habilitacion"</item>
     </array>
+    <string name="title_activity_maps">Map</string>
 
 </resources>
 

@@ -1,6 +1,7 @@
 package tutoapp.com.tutoappstudent;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -182,7 +183,9 @@ public class ActivityClassRequest extends AppCompatActivity {
         setPlaceButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                LaunchAlertDialog(getLayoutInflater(),3);
+                Intent intent=new Intent();
+                intent.setClass(getApplicationContext(),MapsActivity.class);
+                startActivity(intent);
             }
         });
         setTimeButton.setOnClickListener(new View.OnClickListener() {
@@ -210,8 +213,6 @@ public class ActivityClassRequest extends AppCompatActivity {
                     break;
             }
             Button Seguir=(Button) dialoglayout.findViewById(R.id.acceptBtn);//android:id="@+id/acceptBtn"
-
-
 
             final android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(this);
             builder.setView(dialoglayout);
