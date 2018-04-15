@@ -1,7 +1,6 @@
 package tutoapp.com.tutoappstudent.Fragments;
 
 import android.app.AlertDialog;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -14,8 +13,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 
@@ -68,7 +65,7 @@ public class ClassRequest extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment ClassRequest.
+     * @return A new instance of fragment TutosNotCompleted.
      */
     // TODO: Rename and change types and number of parameters
     public static ClassRequest newInstance(String param1, String param2) {
@@ -95,37 +92,15 @@ public class ClassRequest extends Fragment {
     public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_class_request_home, container, false);
-        FloatingActionButton floatingActionButton = (FloatingActionButton) view.findViewById(R.id.floatingActionButton);
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                LaunchAlertDialog(inflater);
-            }
-        });
-        return view;
-    }
+        View view = inflater.inflate(R.layout.fragment_class_request, container, false);
+        final Spinner materiasSpinner = (Spinner) view.findViewById(R.id.spinner_materia);
+        final Spinner temasSpinner = (Spinner) view.findViewById(R.id.spinner_tema);
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
+        Spinner motivoSpinner = (Spinner) view.findViewById(R.id.spinner_motivo);
 
-    public void LaunchAlertDialog(LayoutInflater inflater){
-        //UI
-
-
-        final View dialogView = inflater.inflate(R.layout.fragment_class_request, null);
-        final Spinner materiasSpinner = (Spinner) dialogView.findViewById(R.id.spinner_materia);
-        final Spinner temasSpinner = (Spinner) dialogView.findViewById(R.id.spinner_tema);
-
-        Spinner motivoSpinner = (Spinner) dialogView.findViewById(R.id.spinner_motivo);
-
-        Button pedirClaseButton = (Button) dialogView.findViewById(R.id.PedirClase);
+        Button pedirClaseButton = (Button) view.findViewById(R.id.PedirClase);
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        builder.setView(dialogView);
+        builder.setView(view);
         final AlertDialog d = builder.show();
 
 
@@ -180,55 +155,55 @@ public class ClassRequest extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
-                    OkHttpClient client = new OkHttpClient();
-                    RequestBody formbody=new FormBody.Builder()
-                            .add("idMateria",ArrayListSubjects.get(i).getIdMateria())
-                            .build();
+                OkHttpClient client = new OkHttpClient();
+                RequestBody formbody=new FormBody.Builder()
+                        .add("idMateria",ArrayListSubjects.get(i).getIdMateria())
+                        .build();
 
-                    Request request =new Request.Builder()
-                            .url("http://www.ruedadifusion.com/BuscarTema.php")
-                            .post(formbody)
-                            .build();
-                    client.newCall(request).enqueue(new Callback() {
-                        @Override
-                        public void onFailure(Call call, IOException e) {
+                Request request =new Request.Builder()
+                        .url("http://www.ruedadifusion.com/BuscarTema.php")
+                        .post(formbody)
+                        .build();
+                client.newCall(request).enqueue(new Callback() {
+                    @Override
+                    public void onFailure(Call call, IOException e) {
 
+                    }
+
+                    @Override
+                    public void onResponse(Call call, Response response) throws IOException {
+
+                        Temas temas;
+                        final String Ans = response.body().string();
+                        Gson gson = new Gson();
+                        temas = gson.fromJson(Ans, Temas.class);
+
+                        TopicList.clear();
+                        TopicListNames.clear();
+                        ArrayListTopics.clear();
+
+                        for (int i = 0; i <temas.getTemas().size() ; i++) {
+                            TopicList.add(temas.getTemas().get(i));
+                            TopicListNames.add(temas.getTemas().get(i).getNombreTema());
+                            ArrayListTopics.add(temas.getTemas().get(i));
                         }
+                        Log.i("sizelist","valor de la lista "+TopicListNames.size());
 
-                        @Override
-                        public void onResponse(Call call, Response response) throws IOException {
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                                        getContext(), android.R.layout.simple_spinner_item, TopicListNames);
 
-                            Temas temas;
-                            final String Ans = response.body().string();
-                            Gson gson = new Gson();
-                            temas = gson.fromJson(Ans, Temas.class);
-
-                            TopicList.clear();
-                            TopicListNames.clear();
-                            ArrayListTopics.clear();
-
-                            for (int i = 0; i <temas.getTemas().size() ; i++) {
-                                TopicList.add(temas.getTemas().get(i));
-                                TopicListNames.add(temas.getTemas().get(i).getNombreTema());
-                                ArrayListTopics.add(temas.getTemas().get(i));
+                                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                                adapter.notifyDataSetChanged();
+                                temasSpinner.setAdapter(adapter);
                             }
-                            Log.i("sizelist","valor de la lista "+TopicListNames.size());
+                        });
+                    }
+                });
 
-                            getActivity().runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                                            getContext(), android.R.layout.simple_spinner_item, TopicListNames);
-
-                                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                                    adapter.notifyDataSetChanged();
-                                    temasSpinner.setAdapter(adapter);
-                                }
-                            });
-                        }
-                    });
-
-                }
+            }
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
@@ -244,7 +219,17 @@ public class ClassRequest extends Fragment {
             }
         });
 
+        return view;
     }
+
+    // TODO: Rename method, update argument and hook method into UI event
+    public void onButtonPressed(Uri uri) {
+        if (mListener != null) {
+            mListener.onFragmentInteraction(uri);
+        }
+    }
+
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated

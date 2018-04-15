@@ -16,7 +16,7 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 
-import tutoapp.com.tutoappstudent.Fragments.ClassRequest;
+import tutoapp.com.tutoappstudent.Fragments.TutosNotCompleted;
 import tutoapp.com.tutoappstudent.Fragments.HomeFragment;
 import tutoapp.com.tutoappstudent.Fragments.Profile;
 
@@ -51,7 +51,7 @@ public class HomeActivity extends AppCompatActivity {
 
                     args = new Bundle();
 
-                    newFragment=new ClassRequest();
+                    newFragment=new TutosNotCompleted();
                     newFragment.setArguments(args);
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragmentview, newFragment).commit();
                     return true;

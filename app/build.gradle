@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.onesignal.androidsdk.onesignal-gradle-plugin'
 
 android {
     compileSdkVersion 26
@@ -51,4 +50,4 @@ dependencies {
     compile 'com.onesignal:OneSignal:[3.8.3, 3.99.99]'
 }
 apply plugin: 'com.google.gms.google-services'
-
+apply plugin: 'com.onesignal.androidsdk.onesignal-gradle-plugin'
