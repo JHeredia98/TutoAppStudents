@@ -28,7 +28,7 @@
                 android:id="@+id/layout_customdialog_pick_professional_degree_spin_prof"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:entries="@array/Ciudades"
+
                 >
 
 
@@ -51,7 +51,7 @@
                 android:id="@+id/layout_customdialog_pick_professional_degree_spin_area"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:entries="@array/Universidades"
+
                 >
 
 
@@ -85,7 +85,6 @@
 
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:entries="@array/Profesiones"
                 >
 
 

@@ -46,20 +46,17 @@ public class HomeActivity extends AppCompatActivity {
                     newFragment.setArguments(args);
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragmentview, newFragment).commit();
                     return true;
-                case R.id.navigation_clases:
+                case R.id.navigation_clase_actual:
 
+
+                    return true;
+                case R.id.navigation_clases_pasadas:
 
                     args = new Bundle();
 
                     newFragment=new TutosNotCompleted();
                     newFragment.setArguments(args);
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragmentview, newFragment).commit();
-                    return true;
-                case R.id.navigation_clasespordictar:
-                    Intent intent=new Intent();
-                    intent.setClass(getApplicationContext(),SignUpActivity.class);
-                    startActivity(intent);
-                    finish();
                     return true;
                 case R.id.navigation_social:
 

@@ -1,6 +1,7 @@
 package tutoapp.com.tutoappstudent.Fragments;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -30,6 +31,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+import tutoapp.com.tutoappstudent.ActivityClassRequest;
 import tutoapp.com.tutoappstudent.Class.Materia;
 import tutoapp.com.tutoappstudent.Class.Materias;
 import tutoapp.com.tutoappstudent.Class.Tema;
@@ -56,8 +58,7 @@ public class TutosNotCompleted extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    private ArrayList<Tema> ArrayListTopics;
-    private ArrayList<Materia> ArrayListSubjects;
+
     public TutosNotCompleted() {
         // Required empty public constructor
     }
@@ -87,8 +88,7 @@ public class TutosNotCompleted extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-        ArrayListTopics=new ArrayList<>();
-        ArrayListSubjects=new ArrayList<>();
+
     }
 
     @Override
@@ -114,15 +114,9 @@ public class TutosNotCompleted extends Fragment {
     }
 
     public void LaunchFragmentClassRequest(){
-
-        FrameLayout viewLayout = getActivity().findViewById(R.id.fragmentview);
-        viewLayout.removeView(viewLayout.getRootView());
-
-        Fragment someFragment = new ClassRequest();
-        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.fragmentview, someFragment ); // give your fragment container id in first parameter
-        transaction.addToBackStack(null);  // if written, this transaction will be added to backstack
-        transaction.commit();
+        Intent i =new Intent();
+        i.setClass(getContext(), ActivityClassRequest.class);
+        startActivity(i);
 
 
     }

@@ -1,18 +1,21 @@
-package tutoapp.com.tutoappstudent.Fragments;
+package tutoapp.com.tutoappstudent;
 
 import android.app.AlertDialog;
-import android.net.Uri;
+import android.support.design.widget.TextInputLayout;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.TimePicker;
 
 import com.google.gson.Gson;
 
@@ -31,79 +34,29 @@ import tutoapp.com.tutoappstudent.Class.Materia;
 import tutoapp.com.tutoappstudent.Class.Materias;
 import tutoapp.com.tutoappstudent.Class.Tema;
 import tutoapp.com.tutoappstudent.Class.Temas;
-import tutoapp.com.tutoappstudent.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link ClassRequest.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link ClassRequest#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class ClassRequest extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    private OnFragmentInteractionListener mListener;
+public class ActivityClassRequest extends AppCompatActivity {
 
     private ArrayList<Tema> ArrayListTopics;
     private ArrayList<Materia> ArrayListSubjects;
-    public ClassRequest() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment TutosNotCompleted.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ClassRequest newInstance(String param1, String param2) {
-        ClassRequest fragment = new ClassRequest();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+        setContentView(R.layout.activity_class_request);
+
+        final Spinner materiasSpinner = (Spinner) findViewById(R.id.spinner_materia);
+        final Spinner temasSpinner = (Spinner) findViewById(R.id.spinner_tema);
+
+        Spinner motivoSpinner = (Spinner) findViewById(R.id.spinner_motivo);
+        Button setDateButton=findViewById(R.id.Dia);
+        Button setTimeButton=findViewById(R.id.Hora);
+        Button setPlaceButton=findViewById(R.id.Lugar);
+
+
+        Button pedirClaseButton = (Button) findViewById(R.id.PedirClase);
+
         ArrayListTopics=new ArrayList<>();
         ArrayListSubjects=new ArrayList<>();
-    }
-
-    @Override
-    public View onCreateView(final LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_class_request, container, false);
-        final Spinner materiasSpinner = (Spinner) view.findViewById(R.id.spinner_materia);
-        final Spinner temasSpinner = (Spinner) view.findViewById(R.id.spinner_tema);
-
-        Spinner motivoSpinner = (Spinner) view.findViewById(R.id.spinner_motivo);
-
-        Button pedirClaseButton = (Button) view.findViewById(R.id.PedirClase);
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        builder.setView(view);
-        final AlertDialog d = builder.show();
-
-
         final ArrayList<Materia> SubList=new ArrayList<>();
         final List<String> SubListNames=new ArrayList<>();
         final ArrayList<Tema> TopicList=new ArrayList<>();
@@ -133,11 +86,11 @@ public class ClassRequest extends Fragment {
                     ArrayListSubjects.add(materias.getMaterias().get(i));
                 }
                 Log.i("sizelist","valor de la lista "+SubListNames.size());
-                getActivity().runOnUiThread(new Runnable() {
+                runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                                getContext(), android.R.layout.simple_spinner_item, SubListNames);
+                                getApplicationContext(), android.R.layout.simple_spinner_item, SubListNames);
 
                         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
@@ -189,11 +142,11 @@ public class ClassRequest extends Fragment {
                         }
                         Log.i("sizelist","valor de la lista "+TopicListNames.size());
 
-                        getActivity().runOnUiThread(new Runnable() {
+                        runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
                                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                                        getContext(), android.R.layout.simple_spinner_item, TopicListNames);
+                                        getApplicationContext(), android.R.layout.simple_spinner_item, TopicListNames);
 
                                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                                 adapter.notifyDataSetChanged();
@@ -219,29 +172,59 @@ public class ClassRequest extends Fragment {
             }
         });
 
-        return view;
+        setDateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Quiero que lanze un buen alert dialog con un calendario bien shingon
+                LaunchAlertDialog(getLayoutInflater(),1);
+            }
+        });
+        setPlaceButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                LaunchAlertDialog(getLayoutInflater(),3);
+            }
+        });
+        setTimeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                LaunchAlertDialog(getLayoutInflater(),2);
+            }
+        });
     }
+    public void LaunchAlertDialog(LayoutInflater inflater,int Value){
+        View dialoglayout=null;
+            switch(Value){
+                case 1:
+                    dialoglayout = inflater.inflate(R.layout.date_picker_ad, null);
+                    DatePicker datePicker=dialoglayout.findViewById(R.id.datepicker);
+                    break;
+                case 2:
+                    dialoglayout = inflater.inflate(R.layout.time_picker_ad, null);
+                    TimePicker timePicker=dialoglayout.findViewById(R.id.timepicker);
+                    break;
+                case 3:
+                    dialoglayout = inflater.inflate(R.layout.place_picker_ad, null);
+                    break;
+                default:
+                    break;
+            }
+            Button Seguir=(Button) dialoglayout.findViewById(R.id.acceptBtn);//android:id="@+id/acceptBtn"
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
 
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+            final android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(this);
+            builder.setView(dialoglayout);
+            builder.show();
+            builder.setCancelable(true);
+
+
+            Seguir.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                }
+            });
+
     }
 }

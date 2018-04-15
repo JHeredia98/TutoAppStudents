@@ -8,13 +8,13 @@
 
 
     <item
-        android:id="@+id/navigation_clases"
+        android:id="@+id/navigation_clase_actual"
         android:icon="@drawable/playlist_check"
         android:title="@string/title_class" />
 
 
     <item
-        android:id="@+id/navigation_clasespordictar"
+        android:id="@+id/navigation_clases_pasadas"
         android:icon="@drawable/format_list_checks"
         android:title="@string/title_classnc" />
 

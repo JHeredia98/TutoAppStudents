@@ -151,7 +151,7 @@ public class SignUpFillingAcademicProfile extends Fragment {
             builder.show();
 
             final int indiceCiudad=Prof.getSelectedItemPosition();
-            final Object[] some_array = getResources().getStringArray(R.array.areas);
+            //final Object[] some_array = getResources().getStringArray(R.array.areas);
             Prof.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -193,7 +193,7 @@ public class SignUpFillingAcademicProfile extends Fragment {
             builder.show();
 
 
-            final Object[] some_array = getResources().getStringArray(R.array.areas);
+            //final Object[] some_array = getResources().getStringArray(R.array.areas);
 
             Seguir.setOnClickListener(new View.OnClickListener() {
                 @Override
