@@ -2,6 +2,9 @@ package tutoapp.com.tutoappstudent.FragmentsTutorequest;
 
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -24,6 +27,15 @@ public class TutorShipLocation extends FragmentActivity implements OnMapReadyCal
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        Button Finish=(Button) findViewById(R.id.buttonContinue);
+        Finish.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                LatLng latlng = mMap.getProjection().getVisibleRegion().latLngBounds.getCenter();
+                Toast.makeText(getApplicationContext(),"VALUE ; "+latlng.latitude+latlng.longitude,Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 
@@ -44,5 +56,6 @@ public class TutorShipLocation extends FragmentActivity implements OnMapReadyCal
         LatLng sydney = new LatLng(-34, 151);
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+
     }
 }

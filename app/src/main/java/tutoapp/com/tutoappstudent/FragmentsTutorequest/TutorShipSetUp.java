@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import tutoapp.com.tutoappstudent.R;
 
 
@@ -30,14 +31,6 @@ public class TutorShipSetUp extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment TutorShipSetUp.
-     */
     // TODO: Rename and change types and number of parameters
     public static TutorShipSetUp newInstance(String param1, String param2) {
         TutorShipSetUp fragment = new TutorShipSetUp();
@@ -62,7 +55,7 @@ public class TutorShipSetUp extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView= inflater.inflate(R.layout.fragment_tutor_ship_set_up, container, false);
-        FloatingActionButton fabNext=(FloatingActionButton) rootView.findViewById(R.id.button_addc);
+        CircleImageView fabNext=(CircleImageView) rootView.findViewById(R.id.button_addc);
         fabNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -5,36 +5,27 @@
     android:layout_height="match_parent"
     >
 
-    <!-- TODO: Update blank fragment layout -->
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/tutosnotcompleted_add_class"
+        android:layout_width="600dp"
+        android:layout_height="600dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="bottom|end"
+        app:srcCompat="@drawable/ic_teacher"
+        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="10dp">
 
 
-    <RelativeLayout
-        android:id="@+id/own_container"
+    </android.support.design.widget.FloatingActionButton>
+
+    <ListView
+        android:id="@+id/tutosnotcompleted_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="tutoapp.com.tutoappteacher.Fragments.ClassRequest">
-
-        <!-- TODO: Update blank fragment layout -->
-
-
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/floatingActionButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginBottom="15dp"
-            android:layout_marginEnd="12dp"
-            android:clickable="true"
-            app:srcCompat="@drawable/ic_teacher" />
-
-        <ListView
-            android:id="@+id/tutosnotcompleted_list"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true" />
-    </RelativeLayout>
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true" />
 
 
 </RelativeLayout>

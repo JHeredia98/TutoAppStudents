@@ -1,6 +1,6 @@
 package tutoapp.com.tutoappstudent.Fragments;
 
-import android.app.AlertDialog;
+
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -11,31 +11,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.FrameLayout;
-import android.widget.RelativeLayout;
-import android.widget.Spinner;
+import android.widget.Toast;
 
-import com.google.gson.Gson;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.FormBody;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
+import de.hdodenhof.circleimageview.CircleImageView;
 import tutoapp.com.tutoappstudent.ActivityClassRequest;
-import tutoapp.com.tutoappstudent.Class.Materia;
-import tutoapp.com.tutoappstudent.Class.Materias;
-import tutoapp.com.tutoappstudent.Class.Tema;
-import tutoapp.com.tutoappstudent.Class.Temas;
 import tutoapp.com.tutoappstudent.R;
 
 /**
@@ -96,13 +77,15 @@ public class TutosNotCompleted extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_tutos_not_completed, container, false);
-        FloatingActionButton floatingActionButton = (FloatingActionButton) view.findViewById(R.id.floatingActionButton);
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+        FloatingActionButton next = (FloatingActionButton) view.findViewById(R.id.tutosnotcompleted_add_class);
+        next.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
+                Toast.makeText(getContext(),"HI",Toast.LENGTH_SHORT).show();
                 LaunchFragmentClassRequest();
             }
         });
+
         return view;
     }
 
@@ -114,6 +97,7 @@ public class TutosNotCompleted extends Fragment {
     }
 
     public void LaunchFragmentClassRequest(){
+
         Intent i =new Intent();
         i.setClass(getContext(), ActivityClassRequest.class);
         startActivity(i);

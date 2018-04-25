@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import tutoapp.com.tutoappstudent.R;
 
 
@@ -71,7 +72,7 @@ public class TutorShipTime extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView= inflater.inflate(R.layout.fragment_tutor_ship_time, container, false);
-        FloatingActionButton fabNext=(FloatingActionButton) rootView.findViewById(R.id.button_addc);
+        CircleImageView fabNext=(CircleImageView) rootView.findViewById(R.id.button_addc);
         fabNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -9,23 +9,35 @@
     <!-- TODO: Update blank fragment layout -->
     <TimePicker
         android:id="@+id/timepicker"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"></TimePicker>
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="47dp"></TimePicker>
 
-    <android.support.design.widget.FloatingActionButton
+    <de.hdodenhof.circleimageview.CircleImageView
+
         android:id="@+id/button_addc"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/next_step"
+
         android:layout_alignParentBottom="true"
-        android:src="@drawable/ic_action_accept"
         android:layout_alignParentEnd="true"
         android:layout_gravity="bottom|end"
-        android:layout_marginBottom="31dp"
-        android:layout_marginEnd="31dp"
-        app:borderWidth="0dp"
-        app:elevation="6dp"
-        app:pressedTranslationZ="12dp" />
+        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="10dp"
+
+         />
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme" />
+
 </RelativeLayout>
