@@ -1,4 +1,4 @@
-package tutoapp.com.tutoappstudent.Fragments;
+package tutoapp.com.tutoappstudent.Register;
 
 
 import android.net.Uri;
@@ -74,10 +74,7 @@ public class SignupUser extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootview =inflater.inflate(R.layout.fragment_signup_user, container, false);
-
-
         Button NextStep= rootview.findViewById(R.id.signupuser_continue);
-
         TextInputLayout layout= (TextInputLayout) rootview.findViewById(R.id.fragment_signup_user_container_phone);
 
         final EditText EditTextPhone=layout.getEditText();

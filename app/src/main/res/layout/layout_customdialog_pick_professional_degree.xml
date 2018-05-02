@@ -1,156 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="10dp"
-    >
+    android:orientation="vertical">
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/layout_customdialog_pick_professional_degree_container"
-        android:weightSum="4"
-        android:padding="5dp"> <!-- to show what the parent is -->
-        <LinearLayout
-
-            android:layout_height="match_parent"
-            android:layout_width="0dp"
-            android:layout_weight="2"
-            android:orientation="vertical">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Selecciona Ciudad"
-                />
-
-            <Spinner
-                android:id="@+id/layout_customdialog_pick_professional_degree_spin_prof"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-
-                >
-
-
-            </Spinner>
-        </LinearLayout>
-        <LinearLayout
-
-            android:layout_height="match_parent"
-            android:layout_width="0dp"
-            android:layout_weight="2"
-            android:orientation="vertical"
-            >
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Selecciona Universidad"
-                />
-
-            <Spinner
-                android:id="@+id/layout_customdialog_pick_professional_degree_spin_area"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-
-                >
-
-
-            </Spinner>
-
-        </LinearLayout>
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/layout_customdialog_pick_professional_degree_container_university"
-        android:weightSum="4"
-        android:layout_below="@+id/layout_customdialog_pick_professional_degree_container"
-        android:padding="5dp"> <!-- to show what the parent is -->
-        <LinearLayout
-
-            android:layout_height="match_parent"
-            android:layout_width="0dp"
-            android:layout_weight="2"
-            android:orientation="vertical">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Selecciona tu profesion"
-                />
-
-            <Spinner
-
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                >
-
-
-            </Spinner>
-        </LinearLayout>
-        <LinearLayout
-
-            android:layout_height="match_parent"
-            android:layout_width="0dp"
-            android:layout_weight="2"
-            android:orientation="vertical"
-            >
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Selecciona tu Area"
-                />
-
-            <Spinner
-
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-
-            </Spinner>
-
-        </LinearLayout>
-    </LinearLayout>
 
     <TextView
-        android:layout_width="match_parent"
-        android:id="@+id/layout_customdialog_pick_professional_textview_pd"
-        android:layout_height="wrap_content"
-        android:text="Tipo de post-grado"
-        android:layout_below="@+id/layout_customdialog_pick_professional_degree_container_university"
-        />
-
-    <Spinner
+        android:id="@+id/texto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/layout_customdialog_pick_professional_degree_spinner_esp"
-        android:layout_below="@+id/layout_customdialog_pick_professional_textview_pd"
-        >
+        android:layout_margin="20dp"
+        android:text="Selecciona Universidad"
+        android:textSize="19sp" />
 
-
-    </Spinner>
-    <android.support.design.widget.TextInputLayout
+    <com.mancj.materialsearchbar.MaterialSearchBar
+        android:id="@+id/searchBar"
+        style="@style/MaterialSearchBarLight"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/layout_customdialog_pick_professional_layouttext_pd"
-        android:layout_below="@+id/layout_customdialog_pick_professional_degree_spinner_esp"
-        >
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Ingrese el nombre del post-grado"
-            />
+        app:mt_hint="Custom hint"
+        app:mt_maxSuggestionsCount="10"
+        app:mt_speechMode="true" />
 
-    </android.support.design.widget.TextInputLayout>
-    <Button
+
+    <TextView
+        android:id="@+id/texto2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/layout_customdialog_pick_professional_degree_button"
-        android:layout_below="@+id/layout_customdialog_pick_professional_layouttext_pd"
-        android:background="@drawable/rectangle"
-        android:layout_margin="10dp"
-        android:text="Seleccionar"
-        />
-</RelativeLayout>
+        android:layout_margin="20dp"
+        android:text="Selecciona Carrera"
+
+        android:textSize="19sp" />
+
+    <com.mancj.materialsearchbar.MaterialSearchBar
+        android:id="@+id/searchBar2"
+        style="@style/MaterialSearchBarLight"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:mt_hint="Custom hint"
+        app:mt_maxSuggestionsCount="10"
+        app:mt_speechMode="true" />
+
+
+</LinearLayout>

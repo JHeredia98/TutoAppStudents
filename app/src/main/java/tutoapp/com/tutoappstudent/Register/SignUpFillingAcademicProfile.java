@@ -1,4 +1,4 @@
-package tutoapp.com.tutoappstudent.Fragments;
+package tutoapp.com.tutoappstudent.Register;
 
 
 import android.net.Uri;
@@ -7,17 +7,23 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+
 import java.util.ArrayList;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import tutoapp.com.tutoappstudent.R;
 
 
@@ -78,23 +84,35 @@ public class SignUpFillingAcademicProfile extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootview= inflater.inflate(R.layout.fragment_sign_up_filling_academic_profile, container, false);
-
         Button NextStep= rootview.findViewById(R.id.sign_up_filling_academic_profile_continue);//android:id="@+id/signupfillingacademicprofile_continuebtn"
+        CircleImageView SelectProfession= (CircleImageView) rootview.findViewById(R.id.sign_up_filling_academic_profile_profession);//android:id="@+id/signupfillingacademicprofile_continuebtn"
+
+        // Get ListView object from xml
+        ListView listView = (ListView) rootview.findViewById(R.id.sign_up_filling_academic_listview);
+
+        // Defined Array values to show in ListView
+        String[] values = new String[] { "Ingenieria de sistemas",
+                "Diseño Grafico",
+
+        };
+
+        // Define a new Adapter
+        // First parameter - Context
+        // Second parameter - Layout for the row
+        // Third parameter - ID of the TextView to which the data is written
+        // Forth - the Array of data
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),
+                android.R.layout.simple_list_item_1, android.R.id.text1, values);
 
 
-        Button SelectProfession= (Button) rootview.findViewById(R.id.sign_up_filling_academic_profile_profession);//android:id="@+id/signupfillingacademicprofile_continuebtn"
-        Button SelectPD= (Button) rootview.findViewById(R.id.sign_up_filling_academic_post_education);//android:id="@+id/signupfillingacademicprofile_continuebtn"
+        // Assign adapter to ListView
+        listView.setAdapter(adapter);
 
         SelectProfession.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {// se lanzara como si tuviera solo profesion
                 LaunchAlertDialog(getLayoutInflater(),0);
-            }
-        });
-        SelectPD.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {// se lanzara como si tuviera solo profesion
-                LaunchAlertDialog(getLayoutInflater(),1);
             }
         });
 
@@ -134,60 +152,25 @@ public class SignUpFillingAcademicProfile extends Fragment {
 
         if(value==0){
             final View dialoglayout = inflater.inflate(R.layout.layout_customdialog_pick_professional_degree, null);
-            Button Seguir=(Button) dialoglayout.findViewById(R.id.layout_customdialog_pick_professional_degree_button);
-            final Spinner Area=(Spinner) dialoglayout.findViewById(R.id.layout_customdialog_pick_professional_degree_spin_area);
-            Spinner Prof=(Spinner) dialoglayout.findViewById(R.id.layout_customdialog_pick_professional_degree_spin_prof);
+           // Button Seguir=(Button) dialoglayout.findViewById(R.id.layout_customdialog_pick_professional_degree_button);
 
-            TextView TextViewAOcultar=dialoglayout.findViewById(R.id.layout_customdialog_pick_professional_textview_pd);
-            Spinner spinner=dialoglayout.findViewById(R.id.layout_customdialog_pick_professional_degree_spinner_esp);
-            TextInputLayout textInputLayout=dialoglayout.findViewById(R.id.layout_customdialog_pick_professional_layouttext_pd);
-
-            TextViewAOcultar.setVisibility(View.GONE);
-            spinner.setVisibility(View.GONE);
-            textInputLayout.setVisibility(View.GONE);
+            //MaterialSearchView Prof=  (MaterialSearchView) dialoglayout.findViewById(R.id.layout_customdialog_pick_professional_degree_spin_prof);
 
             final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
             builder.setView(dialoglayout);
             builder.show();
-
-            final int indiceCiudad=Prof.getSelectedItemPosition();
-            //final Object[] some_array = getResources().getStringArray(R.array.areas);
-            Prof.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
-
-                }
-
-                @Override
-                public void onNothingSelected(AdapterView<?> adapterView) {
-
-                }
-            });
-            Seguir.setOnClickListener(new View.OnClickListener() {
+            /*Seguir.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
 
                 }
-            });
+            });*/
 
 
         }else{
 
             final View dialoglayout = inflater.inflate(R.layout.layout_customdialog_pick_professional_degree, null);
-            Button Seguir=(Button) dialoglayout.findViewById(R.id.layout_customdialog_pick_professional_degree_button);
-
-            LinearLayout layout=dialoglayout.findViewById(R.id.layout_customdialog_pick_professional_degree_container);
-            layout.setVisibility(View.GONE);
-
-            Spinner spinner=dialoglayout.findViewById(R.id.layout_customdialog_pick_professional_degree_spinner_esp);
-            TextInputLayout textInputLayout=dialoglayout.findViewById(R.id.layout_customdialog_pick_professional_layouttext_pd);
-
-
-            EditText editText=textInputLayout.getEditText();
-
-
-
+            //Button Seguir=(Button) dialoglayout.findViewById(R.id.layout_customdialog_pick_professional_degree_button);
             final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
             builder.setView(dialoglayout);
             builder.show();
@@ -195,16 +178,17 @@ public class SignUpFillingAcademicProfile extends Fragment {
 
             //final Object[] some_array = getResources().getStringArray(R.array.areas);
 
-            Seguir.setOnClickListener(new View.OnClickListener() {
+            /*Seguir.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
 
                 }
-            });
+            });*/
 
         }
        //LayoutInflater inflater = getLayoutInflater();
 
 
    }
+
 }

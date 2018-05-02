@@ -4,7 +4,7 @@
 
     <item
         android:id="@+id/main_settings_btn"
-        android:title="COnfiguracion de cuenta" />
+        android:title="Configuracion de cuenta" />
 
     <item
         android:id="@+id/main_all_btn"

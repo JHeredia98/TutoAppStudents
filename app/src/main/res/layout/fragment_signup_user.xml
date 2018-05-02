@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient_background"
     >
 
     <TextView
@@ -12,7 +11,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="20dp"
+        android:textSize="22sp"
         android:text="Genero" />
 
     <Spinner
@@ -21,6 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/textView2"
+        android:layout_margin="15dp"
         android:layout_marginTop="10dp">
 
 
@@ -31,6 +33,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
+        android:layout_margin="15dp"
         android:layout_below="@+id/fragment_signupuser_gender">
 
         <android.support.design.widget.TextInputEditText
@@ -41,21 +44,18 @@
             />
     </android.support.design.widget.TextInputLayout>
 
-    <android.support.design.widget.TextInputLayout
+    <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="15dp"
         android:layout_below="@+id/fragment_signup_user_container_phone"
+        android:text="Registra tu ubicación"
+        android:background="@color/colorAccent"
+        android:textColor="@android:color/white"
         >
 
-        <android.support.design.widget.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Direccion"
 
-            />
-
-
-    </android.support.design.widget.TextInputLayout>
+    </Button>
 
     <Button
         android:layout_width="match_parent"
@@ -65,6 +65,8 @@
         android:text="Continuar"
         android:id="@+id/signupuser_continue"
         android:textColor="@android:color/white"
+        android:textSize="19sp"
+        android:layout_margin="20dp"
         android:layout_marginBottom="56dp"
         android:background="@drawable/rounded_buttton" />
 

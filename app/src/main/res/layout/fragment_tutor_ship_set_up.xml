@@ -21,7 +21,6 @@
             android:layout_height="wrap_content"
 
             android:text="Materia"
-            android:textColor="@color/black"
             android:layout_weight="1.6"
             android:textSize="24sp" />
 
@@ -57,7 +56,6 @@
             android:id="@+id/Tema"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
             android:text="Tema"
             android:layout_weight="1.6"
             android:textSize="24sp" />
@@ -98,7 +96,6 @@
             android:layout_below="@+id/spinner_tema"
             android:layout_weight="1.6"
             android:text="Motivo"
-            android:textColor="@color/black"
             android:textSize="24sp" />
 
         <ImageView

@@ -80,12 +80,16 @@ public class RegisterActivity extends AppCompatActivity {
 
                 if(!TextUtils.isEmpty(display_name) || !TextUtils.isEmpty(email) || !TextUtils.isEmpty(password)){
 
-                    mRegProgress.setTitle("Registering User");
-                    mRegProgress.setMessage("Please wait while we create your account !");
+                    mRegProgress.setTitle("Registrando el usuario");
+                    mRegProgress.setMessage("Por favor estamos creando tu cuenta, por favor espera !");
                     mRegProgress.setCanceledOnTouchOutside(false);
                     mRegProgress.show();
 
                     register_user(display_name, email, password);
+                    Intent i=new Intent(getApplicationContext(),SignUpActivity.class);
+                    i.putExtra("email",email);
+                    i.putExtra("password",password);
+                    startActivity(i);
 
                 }
 

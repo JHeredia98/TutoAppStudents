@@ -1,4 +1,4 @@
-package tutoapp.com.tutoappstudent.Fragments;
+package tutoapp.com.tutoappstudent.Register;
 
 import android.content.Intent;
 import android.net.Uri;

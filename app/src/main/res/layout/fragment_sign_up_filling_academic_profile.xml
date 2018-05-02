@@ -2,56 +2,56 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient_background"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <!-- TODO: Update blank fragment layout -->
 
-
-    <Button
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:textSize="19sp"
+        android:text="Toca el birrete para agregar carrera"
+        android:textAlignment="center"
+        android:id="@+id/texto"
+        />
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/sign_up_filling_academic_profile_profession"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:background="@drawable/rounded_buttton"
+        android:layout_alignWithParentIfMissing="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+
+        android:src="@drawable/birrete_icon"
         android:text="Seleccionar Profesion"
-        android:textColor="@android:color/white"
-
+        android:layout_below="@+id/texto"
         />
 
 
-    <Button
+    <ListView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/sign_up_filling_academic_post_education"
-        android:layout_margin="10dp"
-        android:layout_below="@id/sign_up_filling_academic_profile_profession"
-        android:background="@drawable/rounded_buttton"
-        android:textColor="@android:color/white"
-        android:text="Agregar Post-Grados"
-
-        />
-    <ExpandableListView
-        android:layout_width="match_parent"
-        android:layout_height="240dp"
-        android:layout_below="@+id/sign_up_filling_academic_post_education"
+        android:layout_height="220dp"
+        android:layout_margin="15dp"
+        android:layout_below="@+id/sign_up_filling_academic_profile_profession"
         android:id="@+id/sign_up_filling_academic_listview"
         >
 
 
-    </ExpandableListView>
+    </ListView>
 
     <Button
         android:id="@+id/sign_up_filling_academic_profile_continue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/sign_up_filling_academic_listview"
-        android:layout_margin="10dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
         android:background="@drawable/rounded_buttton"
+        android:layout_margin="20dp"
         android:text="Continuar"
-        android:textColor="@android:color/white"
-
-        />
+        android:textColor="@android:color/white" />
 
 </RelativeLayout>
 
