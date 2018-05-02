@@ -48,6 +48,8 @@ dependencies {
     implementation 'com.google.android.gms:play-services-location:11.8.0'
     implementation 'com.google.firebase:firebase-database:11.8.0'
     implementation 'com.google.firebase:firebase-messaging:11.8.0'
+    implementation 'com.github.angads25:toggle:1.0.0'
+    compile 'com.wdullaer:materialdatetimepicker:3.6.0'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     implementation 'com.onesignal:OneSignal:[3.8.3, 3.99.99]'

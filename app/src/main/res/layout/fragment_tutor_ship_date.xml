@@ -1,31 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
     tools:context=".FragmentsTutorequest.TutorShipDate">
 
-    <DatePicker
-        android:id="@+id/datepicker"
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Selecciona la Fecha"
+        android:textSize="19sp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="13dp"></DatePicker>
+        android:layout_marginTop="13dp"
+        android:id="@+id/textview"
+        />
 
-    <de.hdodenhof.circleimageview.CircleImageView
+    <CalendarView
+        android:id="@+id/datepicker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textview"></CalendarView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/datepicker"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="19sp"
+            android:layout_below="@id/datepicker"
+            android:id="@+id/timeview"
+            android:text="Selecciona la hora"
+            android:layout_gravity="bottom"
+            android:layout_weight=".1"
+            />
+
+        <ImageButton
+            android:id="@+id/setTimebtn"
+            android:layout_width="wrap_content"
+            android:layout_gravity="top"
+            android:layout_weight=".1"
+            android:layout_height="48dp"
+            android:layout_centerHorizontal="true"
+            android:background="@color/colorPrimary"
+            app:srcCompat="@drawable/ic_clock" />
+    </LinearLayout>
+
+    <ImageButton
         android:id="@+id/button_addc"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:src="@drawable/next_step"
-
+        android:layout_width="58dp"
+        android:layout_height="58dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_gravity="bottom|end"
-        android:layout_marginBottom="10dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="19dp"
+        android:layout_marginEnd="27dp"
+        android:background="@drawable/oval_button"
+        android:elevation="8dp"
+        android:padding="16dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_action_accept"
         />
+
 
 
 

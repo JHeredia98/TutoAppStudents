@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 
@@ -77,7 +78,7 @@ public class TutosNotCompleted extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_tutos_not_completed, container, false);
-        FloatingActionButton next = (FloatingActionButton) view.findViewById(R.id.tutosnotcompleted_add_class);
+        ImageButton next = (ImageButton) view.findViewById(R.id.tutosnotcompleted_add_class);
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

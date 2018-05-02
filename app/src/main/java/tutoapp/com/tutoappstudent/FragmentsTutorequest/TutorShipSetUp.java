@@ -10,6 +10,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -57,9 +58,8 @@ public class TutorShipSetUp extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView= inflater.inflate(R.layout.fragment_tutor_ship_set_up, container, false);
-        CircleImageView fabNext=(CircleImageView) rootView.findViewById(R.id.button_addc);
-        Spinner SubjectSpinner=rootView.findViewById(R.id.spinner_materia);
-        Spinner TopicSpinner=rootView.findViewById(R.id.spinner_tema);
+        ImageButton fabNext=(ImageButton) rootView.findViewById(R.id.button_addc);
+
         final Spinner MotivoSpinner=rootView.findViewById(R.id.spinner_motivo);
 
         fabNext.setOnClickListener(new View.OnClickListener() {

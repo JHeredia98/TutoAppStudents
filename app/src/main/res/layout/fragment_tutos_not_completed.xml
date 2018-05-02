@@ -6,19 +6,23 @@
     >
 
 
-    <android.support.design.widget.FloatingActionButton
+    <ImageButton
         android:id="@+id/tutosnotcompleted_add_class"
-        android:layout_width="600dp"
-        android:layout_height="600dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_gravity="bottom|end"
-        app:srcCompat="@drawable/ic_teacher"
-        android:layout_marginBottom="10dp"
-        android:layout_marginEnd="10dp">
+        android:layout_marginBottom="19dp"
+        android:layout_marginEnd="27dp"
+        android:background="@drawable/oval_button"
+        android:elevation="8dp"
+        android:padding="16dp"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/add_circle"
+     >
 
 
-    </android.support.design.widget.FloatingActionButton>
+    </ImageButton>
 
     <ListView
         android:id="@+id/tutosnotcompleted_list"

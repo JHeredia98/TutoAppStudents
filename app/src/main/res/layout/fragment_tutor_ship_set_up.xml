@@ -3,156 +3,91 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
 
     tools:context=".FragmentsTutorequest.TutorShipSetUp">
 
-    <LinearLayout
+
+    <com.mancj.materialsearchbar.MaterialSearchBar
+        android:id="@+id/serachViewTema"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@id/textView3"
+        android:layout_margin="15dp">
 
-        android:id="@+id/class_request_materia_Selection"
-        android:weightSum="2"
+
+    </com.mancj.materialsearchbar.MaterialSearchBar>
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:layout_margin="20dp"
-        >
+        android:text="Escribe un Tema"
+        android:textAlignment="center"
 
-        <TextView
-            android:id="@+id/Materia"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:text="Materia"
-            android:layout_weight="1.6"
-            android:textSize="24sp" />
-
-        <ImageView
-            android:id="@+id/materia_done"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="0.4"
-             />
-    </LinearLayout>
-
-    <Spinner
-        android:id="@+id/spinner_materia"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/class_request_materia_Selection"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"/>
+        android:textSize="19sp" />
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/spinner_materia"
-        android:id="@+id/class_request_motivo_Selection"
-        android:weightSum="2"
-        android:layout_margin="15dp"
 
-        >
 
-        <TextView
-            android:id="@+id/Tema"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Tema"
-            android:layout_weight="1.6"
-            android:textSize="24sp" />
 
-        <ImageView
-            android:id="@+id/tema_done"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="0.4"
-             />
-
-    </LinearLayout>
-
-    <Spinner
-        android:id="@+id/spinner_tema"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/class_request_motivo_Selection"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/raro"
-        android:layout_below="@+id/spinner_tema"
-        android:weightSum="2"
-        android:layout_margin="15dp"
-
-        >
-
-        <TextView
-            android:id="@+id/Motivo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/spinner_tema"
-            android:layout_weight="1.6"
-            android:text="Motivo"
-            android:textSize="24sp" />
-
-        <ImageView
-            android:id="@+id/motivo_done"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="0.4"
-            />
-
-    </LinearLayout>
 
     <Spinner
         android:id="@+id/spinner_motivo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/raro"
+        android:layout_below="@id/serachViewTema"
+        android:weightSum="2"
+        android:layout_margin="15dp"
         android:entries="@array/arrayMotivo"
         android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"
         />
 
-    <CheckBox
+    <com.github.angads25.toggle.LabeledSwitch
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="Programar Tutoria"
-        android:checked="false"
+        android:textSize="16sp"
         android:layout_below="@id/spinner_motivo"
         android:layout_margin="20dp"
+        app:on="true"
+        app:textOn="Solicitud Informal"
+        app:textOff="Programar Tutoria"
         android:id="@+id/check_tuto_scheduled"
         />
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/check_tuto_scheduled"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp">
+        android:layout_margin="20dp">
         <android.support.design.widget.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Explique el motivo (OPCIONAL)"
+            android:layout_margin="10dp"
             />
 
     </android.support.design.widget.TextInputLayout>
 
-    <de.hdodenhof.circleimageview.CircleImageView
+    <ImageButton
         android:id="@+id/button_addc"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:src="@drawable/next_step"
 
+        android:layout_width="58dp"
+        android:layout_height="58dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_gravity="bottom|end"
-        android:layout_marginBottom="10dp"
-        android:layout_marginEnd="10dp"
-         />
+        android:layout_marginBottom="19dp"
+        android:layout_marginEnd="27dp"
+        android:background="@drawable/oval_button"
+        android:elevation="8dp"
+        android:padding="16dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_action_accept" />
 </RelativeLayout>
