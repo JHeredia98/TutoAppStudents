@@ -128,7 +128,7 @@ public class TutorShipLocation extends FragmentActivity implements OnMapReadyCal
                 if (grantResults.length > 0  &&  grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
                 } else {
-                    Toast.makeText(this, "Permission Denied for the Camera",
+                    Toast.makeText(this, "Permission Denied for the Location",
                             Toast.LENGTH_SHORT).show();
                 }
                 break;
