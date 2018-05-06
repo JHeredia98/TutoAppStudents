@@ -28,4 +28,8 @@ public class Tema {
         this.idTema = idTema;
     }
 
+    public Tema(String nombreTema, String idTema) {
+        this.nombreTema = nombreTema;
+        this.idTema = idTema;
+    }
 }

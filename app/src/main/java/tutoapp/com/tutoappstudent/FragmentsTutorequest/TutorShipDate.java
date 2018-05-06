@@ -1,30 +1,25 @@
 package tutoapp.com.tutoappstudent.FragmentsTutorequest;
 
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CalendarView;
-import android.widget.CheckBox;
-import android.widget.DatePicker;
 import android.widget.ImageButton;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import de.hdodenhof.circleimageview.CircleImageView;
 import tutoapp.com.tutoappstudent.Objects.TutorShip;
 import tutoapp.com.tutoappstudent.R;
 
@@ -44,7 +39,7 @@ public class TutorShipDate extends Fragment  implements TimePickerDialog.OnTimeS
     private String mParam1;
     private String mParam2;
     private TutorShip tutoria;
-
+    private static Calendar calendarTuto =Calendar.getInstance();
     public TutorShipDate() {
         // Required empty public constructor
     }
@@ -83,7 +78,14 @@ public class TutorShipDate extends Fragment  implements TimePickerDialog.OnTimeS
         // Inflate the layout for this fragment
         View rootView= inflater.inflate(R.layout.fragment_tutor_ship_date, container, false);
         ImageButton fabNext=(ImageButton) rootView.findViewById(R.id.button_addc);
-        ImageButton setTime=(ImageButton) rootView.findViewById(R.id.setTimebtn);
+        Button setTime=(Button) rootView.findViewById(R.id.setTimebtn);
+        CalendarView calendarView = (CalendarView) rootView.findViewById(R.id.datepicker);
+        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            @Override
+            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
+                setDateOfCalendar(year,month,dayOfMonth);
+            }
+        });
         setTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -93,7 +95,7 @@ public class TutorShipDate extends Fragment  implements TimePickerDialog.OnTimeS
                         new android.app.TimePickerDialog.OnTimeSetListener(){
                             @Override
                             public void onTimeSet(TimePicker view, int hour, int minute) {
-                                Log.d("Original", "Got clicked");
+                                Toast.makeText(getContext(),""+hour+" "+minute,Toast.LENGTH_SHORT).show();
                             }
                         },
                         now.get(Calendar.HOUR_OF_DAY),
@@ -102,49 +104,40 @@ public class TutorShipDate extends Fragment  implements TimePickerDialog.OnTimeS
                 ).show();
             }
         });
-        final CalendarView datepicker=(CalendarView) rootView.findViewById(R.id.datepicker);
+
 
 
 
         fabNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int day = 1;
-                int month = 1 + 1;
-                int year = 1;
-                String dateString=day+"/"+month+"/"+year;
-                tutoria.setDate(new Date());
-                Bundle bundle=new Bundle();
-                bundle.putSerializable("tutoria",tutoria);
-                TutorShipTime fragment = new TutorShipTime();
-                fragment.setArguments(bundle);
-                FragmentManager fragmentManager = getFragmentManager();
-                FragmentTransaction transaction = fragmentManager.beginTransaction();
-                transaction.replace(R.id.container_tuto_request, fragment, "TAG");
-                transaction.commit();
+
+                tutoria.setDate(getDateofCalendar());
+                Intent map=new Intent(getContext(),TutorShipLocation.class);
+                map.putExtra("tutoria",tutoria);
+                startActivity(map);
 
             }
         });
         return rootView;
     }
-    public Date convertirFecha(String dateString){
-        Date date=null;
-        try {
-
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-            date = sdf.parse(dateString);
-
-
-
-            Log.d(TAG, "Got the date: " + date);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return date;
-    }
 
     @Override
     public void onTimeSet(TimePickerDialog view, int hourOfDay, int minute, int second) {
 
+    }
+    public void setDateOfCalendar(int year,int month,int day){
+        calendarTuto.set(Calendar.YEAR, year);
+        calendarTuto.set(Calendar.MONTH, month);
+        calendarTuto.set(Calendar.DAY_OF_MONTH, day);
+    }
+    public void setTimeOfCalendar(int year,int month,int day){
+        calendarTuto.set(Calendar.HOUR_OF_DAY, 0);
+        calendarTuto.set(Calendar.MINUTE, 0);
+        calendarTuto.set(Calendar.SECOND, 0);
+        calendarTuto.set(Calendar.MILLISECOND, 0);
+    }
+    public Date getDateofCalendar(){
+        return calendarTuto.getTime();
     }
 }

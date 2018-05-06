@@ -30,8 +30,23 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
+import java.io.IOException;
+import java.util.HashMap;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 import tutoapp.com.tutoappstudent.Map.CameraUpdateAnimator;
 import tutoapp.com.tutoappstudent.Objects.TutorShip;
 import tutoapp.com.tutoappstudent.R;
@@ -44,6 +59,8 @@ public class TutorShipLocation extends FragmentActivity implements OnMapReadyCal
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
     private FusedLocationProviderClient mFusedLocationProviderClient;
     private TutorShip tutoria;
+    private DatabaseReference databaseReferenceTutorship;
+    private FirebaseAuth mAuth;
 
 
     @Override
@@ -73,22 +90,70 @@ public class TutorShipLocation extends FragmentActivity implements OnMapReadyCal
         if(tutoria==null){
             Toast.makeText(getApplicationContext(),"nulo",Toast.LENGTH_LONG).show();
 
+        }else{
+            Toast.makeText(getApplicationContext(),tutoria.toString(),Toast.LENGTH_LONG).show();
         }
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
                 .addApi(LocationServices.API).build();
-
         mGoogleApiClient.connect();
+        mAuth = FirebaseAuth.getInstance();
+        databaseReferenceTutorship = FirebaseDatabase.getInstance().getReference().child("Tutorships");
         Button Finish=(Button) findViewById(R.id.buttonContinue);
         Finish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 LatLng latlng = mMap.getProjection().getVisibleRegion().latLngBounds.getCenter();
-
+                String key = databaseReferenceTutorship.push().getKey();
                 tutoria.setLocation(latlng);
-                Toast.makeText(getApplicationContext(),"VALUE: "+tutoria.getLongitude()+" --"+tutoria.getLatitude(),Toast.LENGTH_SHORT).show();
+                HashMap<String,Object> hashMapTutorships = new HashMap<>();
+                hashMapTutorships.put("Topic", tutoria.getTopicId());
+                hashMapTutorships.put("User", mAuth.getCurrentUser().getUid());
+                hashMapTutorships.put("Latitude", (double)tutoria.getLatitude());
+                hashMapTutorships.put("Longitude", (double) tutoria.getLongitude());
+                hashMapTutorships.put("Status", 0);
+                hashMapTutorships.put("Date", tutoria.getDate().toString());
+                hashMapTutorships.put("Motive", tutoria.getMotivo());
+                databaseReferenceTutorship.child(key).setValue(hashMapTutorships).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
 
+                    }
+                });
+                //Toast.makeText(getApplicationContext(),"VALUE: "+tutoria.getLongitude()+" --"+tutoria.getLatitude(),Toast.LENGTH_SHORT).show();
+                OkHttpClient okHttpClient = new OkHttpClient();
+                RequestBody requestBody = new FormBody.Builder()
+                        .add("tema", tutoria.getTopicId())
+                        .add("latitude", String.valueOf(tutoria.getLatitude()))
+                        .add("longitude", String.valueOf(tutoria.getLongitude()))
+                        .add("datetime", tutoria.getDate().toString())
+                        .add("duration", "2")
+                        .add("iduser", tutoria.getIdUserStudent())
+                        .add("motive", tutoria.getMotivo())
+                        .add("idrequestfb", tutoria.getIdUserStudent())
+                        .add("idtutorshipfb", key)
+                        .build();
+                Request request = new Request.Builder()
+                        .url("http://192.168.1.7:80/Tuto/RequestTutorship.php")
+                        .post(requestBody)
+                        .build();
+                okHttpClient.newCall(request).enqueue(new Callback() {
+                    @Override
+                    public void onFailure(Call call, IOException e) {
+
+                    }
+
+                    @Override
+                    public void onResponse(Call call, final Response response) throws IOException {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Log.i("Response",response.toString());
+                            }
+                        });
+                    }
+                });
             }
         });
     }
