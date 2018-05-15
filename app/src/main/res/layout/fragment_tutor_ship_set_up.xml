@@ -89,5 +89,5 @@
         android:elevation="8dp"
         android:padding="16dp"
         android:scaleType="fitXY"
-        android:src="@drawable/ic_action_accept" />
+        />
 </RelativeLayout>

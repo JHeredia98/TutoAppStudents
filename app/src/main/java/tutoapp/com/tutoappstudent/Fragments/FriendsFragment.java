@@ -98,7 +98,7 @@ public class FriendsFragment extends Fragment {
             protected void populateViewHolder(final FriendsViewHolder friendsViewHolder, Friends friends, int i) {
 
                 // viewHolder.TvHour.setText(DateFormat.format("hh:mm:ss", new Date(c.getTime())).toString());
-                friendsViewHolder.setDate("amigos desde "+ DateFormat.format("dd-MM-yyyy", new Date(friends.getDate())).toString());//se obtiene la fecha
+                //friendsViewHolder.setDate("amigos desde "+ DateFormat.format("dd-MM-yyyy", new Date(friends.getDate())).toString());//se obtiene la fecha
 
                 final String list_user_id = getRef(i).getKey();
 

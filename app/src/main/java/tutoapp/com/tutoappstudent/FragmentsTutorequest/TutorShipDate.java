@@ -112,7 +112,7 @@ public class TutorShipDate extends Fragment  implements TimePickerDialog.OnTimeS
             @Override
             public void onClick(View view) {
 
-                tutoria.setDate(getDateofCalendar());
+                tutoria.setDateString(getDateofCalendar().toString());
                 Intent map=new Intent(getContext(),TutorShipLocation.class);
                 map.putExtra("tutoria",tutoria);
                 startActivity(map);

@@ -11,31 +11,61 @@ import java.util.Date;
 public class TutorShip implements Serializable {
     String Motivo;
     String idUserStudent;
-    LatLng location;
+
     String TopicId;
-    Date date;
+    Double latitude;
+    Double longitude;
+
+    String dateString;
+    String IdTuto;
+    int status;
+
     public double getLatitude(){
-        return location.latitude;
+        return latitude;
     }
     public double getLongitude(){
-        return location.longitude;
+        return longitude;
     }
 
-    public TutorShip(String motivo, String idUserStudent, LatLng location, String topicId) {
+    public TutorShip(String motivo, String idUserStudent, Double longitude,Double latitude, String topicId) {
         Motivo = motivo;
         this.idUserStudent = idUserStudent;
-        this.location = location;
+        this.longitude = longitude;
         TopicId = topicId;
+        this.status=0;
+        this.IdTuto="";
     }
 
-    @Override
-    public String toString() {
-        return "TutorShip{" +
-                "Motivo='" + Motivo + '\'' +
-                ", idUserStudent='" + idUserStudent + '\'' +
-                ", location=" + location +
-                ", TopicId='" + TopicId + '\'' +
-                '}';
+    public String getIdTuto() {
+        return IdTuto;
+    }
+
+    public void setIdTuto(String idTuto) {
+        IdTuto = idTuto;
+    }
+
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
+    }
+
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
+    }
+
+    public String getDateString() {
+        return dateString;
+    }
+
+    public void setDateString(String dateString) {
+        this.dateString = dateString;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 
     public String getMotivo() {
@@ -50,9 +80,7 @@ public class TutorShip implements Serializable {
         return TopicId;
     }
 
-    public Date getDate() {
-        return date;
-    }
+
 
     public TutorShip() {
     }
@@ -65,15 +93,8 @@ public class TutorShip implements Serializable {
         this.idUserStudent = idUserStudent;
     }
 
-    public void setLocation(LatLng location) {
-        this.location = location;
-    }
-
     public void setTopicId(String topicId) {
         TopicId = topicId;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
-    }
 }

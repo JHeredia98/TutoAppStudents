@@ -23,18 +23,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+
 import tutoapp.com.tutoappstudent.Adapter.CustomSuggestionsAdapter;
 import tutoapp.com.tutoappstudent.Class.Tema;
 import tutoapp.com.tutoappstudent.Objects.TutorShip;
 import tutoapp.com.tutoappstudent.R;
 
 
-public class TutorShipSetUp extends Fragment implements MaterialSearchBar.OnSearchActionListener, View.OnClickListener{
+public class TutorShipSetUp extends Fragment implements MaterialSearchBar.OnSearchActionListener{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    private static String Topic;
+    private static String Topic="";
     private static MaterialSearchBar materialSearchBar;
 
     // TODO: Rename and change types of parameters
@@ -148,14 +149,9 @@ public class TutorShipSetUp extends Fragment implements MaterialSearchBar.OnSear
 
     @Override
     public void onButtonClicked(int buttonCode) {
-
-    }
-
-    @Override
-    public void onClick(View v) {
-        suggestionsAdapter.addSuggestion(new Tema("Product", "100"));
         materialSearchBar.setText(Topic);
     }
+
 
 
     public interface OnFragmentInteractionListener {

@@ -43,7 +43,7 @@
             android:layout_height="48dp"
             android:layout_centerHorizontal="true"
             android:background="@color/colorPrimary"
-            android:drawableRight="@drawable/ic_clock" />
+             />
     </LinearLayout>
 
     <ImageButton
@@ -58,7 +58,6 @@
         android:elevation="8dp"
         android:padding="16dp"
         android:scaleType="fitXY"
-        android:src="@drawable/ic_action_accept"
         />
 
 
