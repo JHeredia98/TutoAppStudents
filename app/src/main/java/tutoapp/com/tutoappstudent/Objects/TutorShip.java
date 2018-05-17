@@ -9,16 +9,16 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class TutorShip implements Serializable {
-    String Motivo;
-    String idUserStudent;
+    private String Motivo;
+    private String idUserStudent;
 
-    String TopicId;
-    Double latitude;
-    Double longitude;
+    private String TopicId;
+    private Double latitude;
+    private Double longitude;
 
-    String dateString;
-    String IdTuto;
-    int status;
+    private String dateString;
+    private String IdTuto;
+    private int status;
 
     public double getLatitude(){
         return latitude;
@@ -32,17 +32,15 @@ public class TutorShip implements Serializable {
         this.idUserStudent = idUserStudent;
         this.longitude = longitude;
         TopicId = topicId;
-        this.status=0;
-        this.IdTuto="";
+        this.IdTuto = "";
+        this.status = 0;
+
     }
 
     public String getIdTuto() {
         return IdTuto;
     }
 
-    public void setIdTuto(String idTuto) {
-        IdTuto = idTuto;
-    }
 
     public void setLatitude(Double latitude) {
         this.latitude = latitude;

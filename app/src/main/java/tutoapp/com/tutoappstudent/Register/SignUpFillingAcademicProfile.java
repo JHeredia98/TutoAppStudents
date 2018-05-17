@@ -3,38 +3,20 @@ package tutoapp.com.tutoappstudent.Register;
 
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.Spinner;
-import android.widget.TextView;
-
 
 import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import tutoapp.com.tutoappstudent.R;
 
-
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link SignUpFillingAcademicProfile.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link SignUpFillingAcademicProfile#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class SignUpFillingAcademicProfile extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -44,21 +26,14 @@ public class SignUpFillingAcademicProfile extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    private ArrayList<String> data;
+
     private OnFragmentInteractionListener mListener;
 
     public SignUpFillingAcademicProfile() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment SignUpFillingAcademicProfile.
-     */
+
     // TODO: Rename and change types and number of parameters
     public static SignUpFillingAcademicProfile newInstance(String param1, String param2) {
         SignUpFillingAcademicProfile fragment = new SignUpFillingAcademicProfile();
@@ -75,7 +50,7 @@ public class SignUpFillingAcademicProfile extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
-            data=getArguments().getStringArrayList("collect_data");
+
         }
     }
 
@@ -124,7 +99,7 @@ public class SignUpFillingAcademicProfile extends Fragment {
 
                 //data.add(SpinRama.getSelectedItem().toString());
                 Bundle b=new Bundle();
-                b.putStringArrayList("collect_data",data);
+
                 newFragment.setArguments(b);
                 getFragmentManager().beginTransaction().replace(R.id.signup_activity_container, newFragment).commit();
             }
@@ -152,7 +127,7 @@ public class SignUpFillingAcademicProfile extends Fragment {
 
         if(value==0){
             final View dialoglayout = inflater.inflate(R.layout.layout_customdialog_pick_professional_degree, null);
-           // Button Seguir=(Button) dialoglayout.findViewById(R.id.layout_customdialog_pick_professional_degree_button);
+            // Button Seguir=(Button) dialoglayout.findViewById(R.id.layout_customdialog_pick_professional_degree_button);
 
             //MaterialSearchView Prof=  (MaterialSearchView) dialoglayout.findViewById(R.id.layout_customdialog_pick_professional_degree_spin_prof);
 
@@ -186,9 +161,9 @@ public class SignUpFillingAcademicProfile extends Fragment {
             });*/
 
         }
-       //LayoutInflater inflater = getLayoutInflater();
+        //LayoutInflater inflater = getLayoutInflater();
 
 
-   }
+    }
 
 }

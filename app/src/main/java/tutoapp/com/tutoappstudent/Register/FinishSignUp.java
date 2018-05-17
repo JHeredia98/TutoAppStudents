@@ -9,20 +9,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 import tutoapp.com.tutoappstudent.HomeActivity;
 import tutoapp.com.tutoappstudent.R;
 
-
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link FinishSignUp.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link FinishSignUp#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class FinishSignUp extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -35,7 +34,7 @@ public class FinishSignUp extends Fragment {
 
     private ArrayList<String> data;
     private OnFragmentInteractionListener mListener;
-
+    private Bundle bundle;
     public FinishSignUp() {
         // Required empty public constructor
     }
@@ -64,7 +63,7 @@ public class FinishSignUp extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
-            data=getArguments().getStringArrayList("collect_data");
+            bundle=getArguments();
         }
     }
 
@@ -79,10 +78,57 @@ public class FinishSignUp extends Fragment {
             @Override
             public void onClick(View view) {
 
-                Intent i=new Intent();
-                i.setClass(getContext(), HomeActivity.class);
-                startActivity(i);
-                getActivity().finish();
+                OkHttpClient clientefirebase=new OkHttpClient();
+                RequestBody requestBodyfirebase = new FormBody.Builder()
+                        .add("firebase",bundle.getString("firebaseid"))
+                        .build();
+                Request requestfirebase = new Request.Builder()
+                        .url("www.ruedadifusion.com/TutoApp/Tuto/InsertFirebaseUID.php")
+                        .post(requestBodyfirebase)
+                        .build();
+                clientefirebase.newCall(requestfirebase).enqueue(new Callback() {
+                    @Override
+                    public void onFailure(Call call, IOException e) {
+
+                    }
+
+                    @Override
+                    public void onResponse(Call call, Response response) throws IOException {
+                        OkHttpClient clientuser=new OkHttpClient();
+                        RequestBody requestBody = new FormBody.Builder()
+                                .add("email",bundle.getString("email"))
+                                .add("password",bundle.getString("password"))
+                                .add("lastname", bundle.getString("lastname"))
+                                .add("username",bundle.getString("username"))
+                                .add("gender", bundle.getString("gender"))
+                                .add("firebase", bundle.getString("firebaseid"))
+                                .add("usertype", "1")
+                                .add("name", bundle.getString("name"))
+                                .build();
+                        Request request = new Request.Builder()
+                                .url("/TutoApp/Tuto/InsertUser.php")
+                                .post(requestBody)
+                                .build();
+                        clientuser.newCall(request).enqueue(new Callback() {
+                            @Override
+                            public void onFailure(Call call, IOException e) {
+
+                            }
+
+                            @Override
+                            public void onResponse(Call call, Response response) throws IOException {
+                                Intent i=new Intent();
+                                i.setClass(getContext(), HomeActivity.class);
+                                startActivity(i);
+                                getActivity().finish();
+                            }
+                        });
+                    }
+                });
+
+
+
+
             }
         });
         return rootview;

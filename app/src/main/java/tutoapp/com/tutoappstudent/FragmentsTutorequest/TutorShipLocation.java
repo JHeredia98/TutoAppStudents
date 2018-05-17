@@ -142,7 +142,7 @@ public class TutorShipLocation extends FragmentActivity implements OnMapReadyCal
                                 .add("idtutorshipfb", key)
                                 .build();
                         Request request = new Request.Builder()
-                                .url("http://192.168.0.103:80/Tuto/RequestTutorship.php")
+                                .url("http://ruedadifusion.com/TutoApp/Tuto/RequestTutorship.php")
                                 .post(requestBody)
                                 .build();
                         okHttpClient.newCall(request).enqueue(new Callback() {
@@ -191,6 +191,7 @@ public class TutorShipLocation extends FragmentActivity implements OnMapReadyCal
                                                 @Override
                                                 public void run() {
                                                     progressDialog.dismiss();
+                                                    Toast.makeText(getApplicationContext(), "tutor encontrado", Toast.LENGTH_LONG);
                                                 }
                                             });
                                         }

@@ -2,10 +2,10 @@ package tutoapp.com.tutoappstudent;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
@@ -80,16 +80,13 @@ public class RegisterActivity extends AppCompatActivity {
 
                 if(!TextUtils.isEmpty(display_name) || !TextUtils.isEmpty(email) || !TextUtils.isEmpty(password)){
 
-                    mRegProgress.setTitle("Registrando el usuario");
-                    mRegProgress.setMessage("Por favor estamos creando tu cuenta, por favor espera !");
+                    mRegProgress.setTitle("Registering User");
+                    mRegProgress.setMessage("Please wait while we create your account !");
                     mRegProgress.setCanceledOnTouchOutside(false);
                     mRegProgress.show();
 
                     register_user(display_name, email, password);
-                    Intent i=new Intent(getApplicationContext(),SignUpActivity.class);
-                    i.putExtra("email",email);
-                    i.putExtra("password",password);
-                    startActivity(i);
+
 
                 }
 
@@ -101,7 +98,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
-    private void register_user(final String display_name, String email, String password) {
+    private void register_user(final String display_name, final String email, final String password) {
 
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
@@ -132,9 +129,18 @@ public class RegisterActivity extends AppCompatActivity {
 
                                 mRegProgress.dismiss();
 
-                                Intent mainIntent = new Intent(RegisterActivity.this, TabChatActivity.class);
-                                mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                startActivity(mainIntent);
+                                Intent registerIntent = new Intent(RegisterActivity.this, SignUpActivity.class);
+                                Bundle b=new Bundle();
+                                b.putString("username",display_name);
+                                b.putString("password",password);
+                                b.putString("email",email);
+                                /**String username=b.getString("username");
+                                 String password=b.getString("password");
+                                 String email=b.getString("email");
+                                 * */
+                                registerIntent.putExtras(b);
+                                registerIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                startActivity(registerIntent);
                                 finish();
 
                             }
