@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -103,7 +104,7 @@ public class ActualTutorship extends Fragment {
 
                 }
             });
-            Button Llamar =(Button) rootView.findViewById(R.id.actual_tutorship_llamar);
+            ImageButton Llamar =(ImageButton) rootView.findViewById(R.id.actual_tutorship_llamar);
             Llamar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -111,7 +112,7 @@ public class ActualTutorship extends Fragment {
                     startActivity(intent);
                 }
             });
-            Button CancelarClase =(Button) rootView.findViewById(R.id.actual_tutorship_llamar);
+            ImageButton CancelarClase =(ImageButton) rootView.findViewById(R.id.actual_tutorship_llamar);
             CancelarClase.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

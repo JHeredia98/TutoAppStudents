@@ -150,7 +150,7 @@ public class TutorShipLocation extends FragmentActivity implements OnMapReadyCal
                                 .add("idtutorshipfb", key)
                                 .build();
                         Request request = new Request.Builder()
-                                .url("http://ruedadifusion.com/TutoApp/Tuto/RequestTutorship.php")
+                                .url("http://192.168.1.61:80/Tuto/RequestTutorship.php")
                                 .post(requestBody)
                                 .build();
                         okHttpClient.newCall(request).enqueue(new Callback() {
@@ -184,37 +184,30 @@ public class TutorShipLocation extends FragmentActivity implements OnMapReadyCal
                                     public void onDataChange(DataSnapshot dataSnapshot) {
 
                                         TutorShip tutoria = dataSnapshot.getValue(TutorShip.class);
-                                        if(tutoria.getStatus()==1){//quiere decir que fue aceptada por algun docente
-                                            if(tutoria.getIdTuto().equals(mAuth.getCurrentUser().getUid())){
+                                        if(tutoria!=null){
+                                            if(tutoria.getStatus()==1){//quiere decir que fue aceptada por algun docente
 
+                                                for(int i=0;i<TutosFromrequest.size();i++){
+                                                    //Toast.makeText(getApplicationContext(),"tutor  "+tutoria.getIdTuto(),Toast.LENGTH_LONG).show();
+                                                    Toast.makeText(getApplicationContext(),"tutor  "+TutosFromrequest.get(i).getNombre(),Toast.LENGTH_LONG).show();
+
+                                                }
                                                 editor.putString("tuto_key",key);
-                                                editor.apply();
-                                            }
-                                            for(int i=0;i<TutosFromrequest.size();i++){
-                                                //Toast.makeText(getApplicationContext(),"tutor  "+tutoria.getIdTuto(),Toast.LENGTH_LONG).show();
-                                                //Toast.makeText(getApplicationContext(),"tutor  "+TutosFromrequest.get(i).getNombre(),Toast.LENGTH_LONG).show();
-                                                if(!tutoria.getIdTuto().equals(TutosFromrequest.get(i).getCodFirebase())){
-                                                    //FirebaseDatabase.getInstance().getReference().child("Tutorships");
-                                                    //se hara para remover el tutorequest
-                                                    //databaseReferenceTutoRequest= FirebaseDatabase.getInstance().getReference().child("TutoRequest").child(TutosFromrequest.get(i).getCodFirebase());
-                                                }
-                                            }
-                                            runOnUiThread(new Runnable() {
-                                                @Override
-                                                public void run() {
-                                                    progressDialog.dismiss();
-                                                    Snackbar.make(getCurrentFocus(), "Tuto encontrado", Snackbar.LENGTH_LONG)
-                                                            //.setActionTextColor(Color.CYAN)
-                                                            .show();
-                                                }
-                                            });
+                                                editor.commit();
+                                                runOnUiThread(new Runnable() {
+                                                    @Override
+                                                    public void run() {
+                                                        progressDialog.dismiss();
+                                                        ActualTutorship fragment=new ActualTutorship();
 
-                                            ActualTutorship fragment=new ActualTutorship();
-                                            FragmentManager manager = getSupportFragmentManager();
-                                            FragmentTransaction transaction = manager.beginTransaction();
-                                            transaction.replace(R.id.fragmentview, fragment);
-                                            transaction.commit();
+                                                        finish();
+                                                    }
+                                                });
+
+                                            }
+
                                         }
+
 
                                     }
 
