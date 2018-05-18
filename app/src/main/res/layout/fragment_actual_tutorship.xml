@@ -6,179 +6,203 @@
     tools:context="tutoapp.com.tutoappstudent.Fragments.ActualTutorship">
 
     <!-- TODO: Update blank fragment layout -->
-    <android.support.v7.widget.Toolbar
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:id="@+id/actual_tutorship_toolbar"
+        android:layout_height="match_parent"
+        android:id="@+id/actual_tutorship_blank"
+        android:visibility="gone"
         >
-        <RelativeLayout
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <android.support.v4.widget.CircleImageView
-                android:layout_width="96dp"
-                android:layout_height="96dp"
-                android:src="@drawable/birrete_icon"
-                app:civ_border_width="2dp"
-                app:civ_border_color="#FF000000"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:id="@+id/actual_tutorship_profile_pic"
-                android:layout_marginStart="122dp" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Tuto's Name"
-                android:layout_marginLeft="10dp"
-                android:id="@+id/actual_tutorship_tuto_name"
-                android:textColor="@color/white"
-                android:layout_below="@+id/actual_tutorship_profile_pic"
-                android:textSize="19sp"
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Topic"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:textColor="@color/white"
-                android:id="@+id/actual_tutorship_topic"
-                android:layout_below="@+id/actual_tutorship_tuto_name"
-                android:textSize="15sp"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Place"
-                android:layout_marginTop="10dp"
-                android:textColor="@color/white"
-                android:id="@+id/actual_tutorship_place"
-                android:layout_below="@+id/actual_tutorship_topic"
-                android:textSize="15sp"
-                android:layout_marginLeft="10dp"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Hour"
-                android:layout_marginTop="10dp"
-                android:textColor="@color/white"
-                android:id="@+id/actual_tutorship_hour"
-                android:layout_below="@+id/actual_tutorship_place"
-                android:textSize="15sp"
-                android:layout_marginLeft="10dp"
-                />
-
-
-        </RelativeLayout>
-
-    </android.support.v7.widget.Toolbar>
-    <LinearLayout
+            android:layout_height="match_parent"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:text="Hola"
+            />
+    </RelativeLayout>
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/actual_tutorship_toolbar"
-        android:orientation="vertical"
-        android:layout_margin="10dp"
+        android:layout_height="match_parent"
+        android:id="@+id/actual_tutorship_container"
+        android:visibility="gone"
         >
-        <LinearLayout
+
+        <android.support.v7.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="2"
+            android:background="@color/colorPrimary"
+            android:id="@+id/actual_tutorship_toolbar"
             >
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1.6"
-            android:orientation="horizontal">
-
-            <TextView
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="Enviar mensaje"
-                android:textSize="18sp"
-                android:textAlignment="center" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content">
 
-        </LinearLayout>
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_weight="0.4"
-                android:layout_margin="10dp"
-                />
+                <android.support.v4.widget.CircleImageView
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:src="@drawable/birrete_icon"
+                    app:civ_border_width="2dp"
+                    app:civ_border_color="#FF000000"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:id="@+id/actual_tutorship_profile_pic"
+                    android:layout_marginStart="122dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tuto's Name"
+                    android:layout_marginLeft="10dp"
+                    android:id="@+id/actual_tutorship_tuto_name"
+                    android:textColor="@color/white"
+                    android:layout_below="@+id/actual_tutorship_profile_pic"
+                    android:textSize="19sp"
+                    />
 
-        </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Topic"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/white"
+                    android:id="@+id/actual_tutorship_topic"
+                    android:layout_below="@+id/actual_tutorship_tuto_name"
+                    android:textSize="15sp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Place"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/white"
+                    android:id="@+id/actual_tutorship_place"
+                    android:layout_below="@+id/actual_tutorship_topic"
+                    android:textSize="15sp"
+                    android:layout_marginLeft="10dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hour"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/white"
+                    android:id="@+id/actual_tutorship_hour"
+                    android:layout_below="@+id/actual_tutorship_place"
+                    android:textSize="15sp"
+                    android:layout_marginLeft="10dp"
+                    />
 
+
+            </RelativeLayout>
+
+        </android.support.v7.widget.Toolbar>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="2"
+            android:layout_below="@+id/actual_tutorship_toolbar"
+            android:orientation="vertical"
+            android:layout_margin="10dp"
             >
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1.6"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:weightSum="2"
+                >
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.6"
+                    android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="LLamar"
-                    android:textSize="18sp"
-                    android:textAlignment="center" />
-                <TextView
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Enviar mensaje"
+                        android:textSize="18sp"
+                        android:textAlignment="center" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+                <ImageButton
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="40dp"
+                    android:layout_weight="0.4"
+                    android:layout_margin="10dp"
+                    />
 
             </LinearLayout>
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_weight="0.4"
-                android:layout_margin="10dp"
-                />
 
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="2"
-            >
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1.6"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:weightSum="2"
+                >
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.6"
+                    android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="Cancelar clase"
-                    android:textSize="18sp"
-                    android:textAlignment="center" />
-                <TextView
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="LLamar"
+                        android:textSize="18sp"
+                        android:textAlignment="center" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <ImageButton
+                    android:id="@+id/actual_tutorship_llamar"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="40dp"
+                    android:layout_margin="10dp"
+                    android:layout_weight="0.4" />
+
+
 
             </LinearLayout>
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_weight="0.4"
-                android:layout_margin="10dp"
-                />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                >
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.6"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Cancelar clase"
+                        android:textSize="18sp"
+                        android:textAlignment="center" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_weight="0.4"
+                    android:layout_margin="10dp"
+                    />
+
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
+
+    </RelativeLayout>
 
 </RelativeLayout>

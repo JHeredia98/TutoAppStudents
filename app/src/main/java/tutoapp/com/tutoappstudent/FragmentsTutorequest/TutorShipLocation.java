@@ -2,6 +2,7 @@ package tutoapp.com.tutoappstudent.FragmentsTutorequest;
 
 import android.Manifest;
 import android.app.ProgressDialog;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.support.annotation.NonNull;
@@ -9,6 +10,8 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -55,12 +58,14 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 import tutoapp.com.tutoappstudent.Class.GlobalTutors;
 import tutoapp.com.tutoappstudent.Class.Tutor;
+import tutoapp.com.tutoappstudent.Fragments.ActualTutorship;
 import tutoapp.com.tutoappstudent.Map.CameraUpdateAnimator;
 import tutoapp.com.tutoappstudent.Objects.TutorShip;
 import tutoapp.com.tutoappstudent.R;
 
 public class TutorShipLocation extends FragmentActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, ActivityCompat.OnRequestPermissionsResultCallback {
 
+    private static final String SHAREDNAME ="tutoshared" ;
     private GoogleMap mMap;
     private GoogleApiClient mGoogleApiClient;
     private String TAG = "HOLA";
@@ -72,7 +77,8 @@ public class TutorShipLocation extends FragmentActivity implements OnMapReadyCal
     private FirebaseAuth mAuth;
     private ArrayList<Tutor> TutosFromrequest;
     private ProgressDialog progressDialog;
-
+    private SharedPreferences sharedPreferences;
+    private SharedPreferences.Editor editor;
     @Override
     public void onConnectionFailed(ConnectionResult result) {
         Log.i(TAG, "Connection failed: ConnectionResult.getErrorCode() = " + result.getErrorCode());
@@ -97,6 +103,8 @@ public class TutorShipLocation extends FragmentActivity implements OnMapReadyCal
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         tutoria= (TutorShip) getIntent().getSerializableExtra("tutoria");
+        sharedPreferences=getSharedPreferences(SHAREDNAME,MODE_PRIVATE);
+        editor=sharedPreferences.edit();
         progressDialog= new ProgressDialog(this);
         if(tutoria==null){
             Toast.makeText(getApplicationContext(),"nulo",Toast.LENGTH_LONG).show();
@@ -132,8 +140,8 @@ public class TutorShipLocation extends FragmentActivity implements OnMapReadyCal
                         OkHttpClient okHttpClient = new OkHttpClient();
                         RequestBody requestBody = new FormBody.Builder()
                                 .add("tema", tutoria.getTopicId())
-                                .add("latitude", String.valueOf(tutoria.getLatitude()))
-                                .add("longitude", String.valueOf(tutoria.getLongitude()))
+                                .add("latitude", String.valueOf(7.074838))
+                                .add("longitude", String.valueOf(-73.103826))
                                 .add("datetime", tutoria.getDateString())
                                 .add("duration", "2")
                                 .add("iduser", tutoria.getIdUserStudent())
@@ -176,24 +184,36 @@ public class TutorShipLocation extends FragmentActivity implements OnMapReadyCal
                                     public void onDataChange(DataSnapshot dataSnapshot) {
 
                                         TutorShip tutoria = dataSnapshot.getValue(TutorShip.class);
-                                        if(tutoria.getStatus()==1){//quiere decir que fue aceptada
-                                            //String tutouid=(String) dataSnapshot.child("Tuto").getValue();
+                                        if(tutoria.getStatus()==1){//quiere decir que fue aceptada por algun docente
+                                            if(tutoria.getIdTuto().equals(mAuth.getCurrentUser().getUid())){
+
+                                                editor.putString("tuto_key",key);
+                                                editor.apply();
+                                            }
                                             for(int i=0;i<TutosFromrequest.size();i++){
                                                 //Toast.makeText(getApplicationContext(),"tutor  "+tutoria.getIdTuto(),Toast.LENGTH_LONG).show();
                                                 //Toast.makeText(getApplicationContext(),"tutor  "+TutosFromrequest.get(i).getNombre(),Toast.LENGTH_LONG).show();
-                                                /*if(!tutoria.getIdTuto().equals(TutosFromrequest.get(i).getCodFirebase())){
+                                                if(!tutoria.getIdTuto().equals(TutosFromrequest.get(i).getCodFirebase())){
                                                     //FirebaseDatabase.getInstance().getReference().child("Tutorships");
                                                     //se hara para remover el tutorequest
-                                                    databaseReferenceTutoRequest= FirebaseDatabase.getInstance().getReference().child("TutoRequest").child(TutosFromrequest.get(i).getCodFirebase());
-                                                }*/
+                                                    //databaseReferenceTutoRequest= FirebaseDatabase.getInstance().getReference().child("TutoRequest").child(TutosFromrequest.get(i).getCodFirebase());
+                                                }
                                             }
                                             runOnUiThread(new Runnable() {
                                                 @Override
                                                 public void run() {
                                                     progressDialog.dismiss();
-                                                    Toast.makeText(getApplicationContext(), "tutor encontrado", Toast.LENGTH_LONG);
+                                                    Snackbar.make(getCurrentFocus(), "Tuto encontrado", Snackbar.LENGTH_LONG)
+                                                            //.setActionTextColor(Color.CYAN)
+                                                            .show();
                                                 }
                                             });
+
+                                            ActualTutorship fragment=new ActualTutorship();
+                                            FragmentManager manager = getSupportFragmentManager();
+                                            FragmentTransaction transaction = manager.beginTransaction();
+                                            transaction.replace(R.id.fragmentview, fragment);
+                                            transaction.commit();
                                         }
 
                                     }
@@ -205,7 +225,7 @@ public class TutorShipLocation extends FragmentActivity implements OnMapReadyCal
                                 });
 
 
-                                /***/
+
 
                             }
                         });

@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 
+import tutoapp.com.tutoappstudent.Fragments.ActualTutorship;
 import tutoapp.com.tutoappstudent.Fragments.TutosNotCompleted;
 import tutoapp.com.tutoappstudent.Fragments.HomeFragment;
 import tutoapp.com.tutoappstudent.Fragments.Profile;
@@ -47,7 +48,11 @@ public class HomeActivity extends AppCompatActivity {
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragmentview, newFragment).commit();
                     return true;
                 case R.id.navigation_clase_actual:
+                    args = new Bundle();
 
+                    newFragment=new ActualTutorship();
+                    newFragment.setArguments(args);
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragmentview, newFragment).commit();
 
                     return true;
                 case R.id.navigation_clases_pasadas:
